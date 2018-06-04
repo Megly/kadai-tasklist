@@ -3,17 +3,9 @@
 @section('content')
 
     <h1>New Task</h1>
-    
-    @if (count($errors) > 0)
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-
-    <div class="row">
-        <div class="col-xs-6">
+        <div class="row">
+        <div class="col-xs-12" "col-sm-offset-2 col-sm-8" "col-md-offset-2 col-md-8" "col-lg-offset-3 col-sm-6" >
+    </div>
             {!! Form::model($task, ['route' => 'tasks.store']) !!}
             
                 <div class="form-group">
