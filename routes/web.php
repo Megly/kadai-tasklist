@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('tasks', 'TasksController');
+
+// 以下ユーザー登録のルート
+Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
