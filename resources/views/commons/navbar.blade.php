@@ -12,7 +12,10 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>{!! link_to_route('tasks.create', 'Login') !!}</li>
                     <li>{!! link_to_route('tasks.create', 'Add New Task') !!}</li>
+                    <li>{!! link_to_route('tasks.store', 'Show My Tasks') !!}</li>
+                    <li>{!! link_to_route('tasks.create', 'Logout') !!}</li>
                 </ul>
             </div>
         </div>
