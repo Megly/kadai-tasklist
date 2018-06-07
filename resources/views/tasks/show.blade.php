@@ -21,7 +21,7 @@
     </table>
 
 
-   {!! link_to_route('tasks.edit', 'Edit this message', ['id' => $task->id], ['class' => 'btn btn-primary btn-lg active']) !!}
+   {!! link_to_route('tasks.edit', 'Edit this message', ['id' => $task->id], ['class' => 'btn btn-primary btn-xs active']) !!}
 
 <br><br>
 
