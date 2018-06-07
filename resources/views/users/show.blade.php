@@ -16,6 +16,7 @@
                 <p role="presentation" class="{{ Request::is('users/' . $user->id) ? 'active' : '' }}"><h3>TimeLine<span class="badge">✎{{ $count_tasks }}</span></h3></a></p>
             @if (Auth::user()->id == $user->id)
                   {!! Form::open(['route' => 'tasks.store']) !!}
+                  
                       <div class="form-group">
                           <h4>status</h4>
                           {!! Form::textarea('status', old('status'), ['class' => 'form-control', 'placeholder="How is it going ?"', 'rows' => '1']) !!}
