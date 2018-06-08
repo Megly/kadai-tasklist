@@ -10,9 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'TasksController@index');
-
 Route::resource('tasks', 'TasksController');
 
 // registration
@@ -29,3 +27,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
     Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
 });
+
