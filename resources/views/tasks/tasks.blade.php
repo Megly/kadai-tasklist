@@ -9,7 +9,7 @@
             
             <div>
                 @if (Auth::user()->id == $task->user_id)
-                    {!! link_to_route('users.show', $user->name, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $task->created_at }}</span>
+                    {!! link_to_route('tasks.show', $user->name, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $task->created_at }}</span>
                     <div>
                         <p>status: {!! nl2br(e($task->status)) !!}<br>
                          <p>task: {!! nl2br(e($task->content)) !!}</p>
