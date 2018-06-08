@@ -28,7 +28,7 @@ class TasksController extends Controller
             ];
             $data += $this->counts($user);
             return view('users.show', $data);
-        }else {
+        }else{
             return view('welcome');
         }
     }
@@ -46,7 +46,10 @@ class TasksController extends Controller
         return view('tasks.create', [
             'task' => $task,
         ]);
-    }
+            
+        }else{
+            return view('welcome');
+        }
     }
 
     /**
@@ -83,7 +86,9 @@ class TasksController extends Controller
         return view('tasks.show', [
             'task' => $task,
         ]);
-    }
+        }else{
+            return view('welcome');
+        }
     }
 
     /**
