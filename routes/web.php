@@ -24,7 +24,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 // Calling tasks of users
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
-    Route::resource('tasks', 'TasksController', ['only' => ['store', 'destroy']]);
+    Route::resource('tasks', 'TasksController', ['only' => ['store', 'edit', 'destroy']]);
 });
-
