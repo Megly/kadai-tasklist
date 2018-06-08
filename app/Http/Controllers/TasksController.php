@@ -84,7 +84,9 @@ class TasksController extends Controller
         return view('tasks.show', [
             'task' => $task,
         ]);
-    }
+        }else {
+            return view('welcome');
+        }
     }
 
     /**
@@ -95,16 +97,17 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
+         //return view('welcome');
        $task = Task::find($id);
-       if (\Auth::user()->id === $task->user_id) {
+          if (\Auth::user()->id === $task->user_id) {
 
-        return view('tasks.edit', [
-            'task' => $task,
-        ]);
-       }
-       else
-           return view('welcome');
-       
+            return view('tasks.edit', [
+                'task' => $task,
+            ]);
+            
+        }else {
+            return view('welcome');
+        }
     }
 
 
