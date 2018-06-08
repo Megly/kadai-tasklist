@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', 'TasksController@index');
-Route::resource('tasks', 'TasksController');
+// Route::resource('tasks', 'TasksController');
 
 // registration
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
