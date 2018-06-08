@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Task;    // add
+use App\Http\Requests;
+
+use App\Task;
 
 use App\Http\Controllers\Controller;
 
@@ -17,7 +19,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $data = [];
+               $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
             $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
@@ -28,7 +30,7 @@ class TasksController extends Controller
             ];
             $data += $this->counts($user);
             return view('users.show', $data);
-        }else{
+        }else {
             return view('welcome');
         }
     }
@@ -41,15 +43,12 @@ class TasksController extends Controller
      */
     public function create()
     {
-        $task = new Task;
-        if (\Auth::user()->id === $task->user_id) {
+         $task = new Task;
+    if (\Auth::user()->id === $task->user_id) {
         return view('tasks.create', [
             'task' => $task,
         ]);
-            
-        }else{
-            return view('welcome');
-        }
+    }
     }
 
     /**
@@ -60,11 +59,10 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'status' => 'required|max:191',
-            'content' => 'required|max:191',
-        ]);
-        
+        $this->validate($request,[
+            'status' => 'required|max:10',
+            'content' => 'required|max:191',]);
+
         $request->user()->tasks()->create([
             'status' => $request->status,
             'content' => $request->content,
@@ -86,9 +84,7 @@ class TasksController extends Controller
         return view('tasks.show', [
             'task' => $task,
         ]);
-        }else{
-            return view('welcome');
-        }
+    }
     }
 
     /**
@@ -99,16 +95,18 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::find($id);
-        if (\Auth::user()->id === $task->user_id) {
+       $task = Task::find($id);
+       if (\Auth::user()->id === $task->user_id) {
+
         return view('tasks.edit', [
             'task' => $task,
         ]);
-        }else{
-            return view('welcome');
-        }
+       }
+       else
+           return view('welcome');
+       
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -122,7 +120,7 @@ class TasksController extends Controller
         $this->validate($request, [
             'status' => 'required|max:10',
             'content' => 'required|max:191',
-        ]);        
+        ]);
         
         $task = Task::find($id);
         $task->status = $request->status;
