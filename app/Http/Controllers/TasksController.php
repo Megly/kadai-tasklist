@@ -99,6 +99,21 @@ class TasksController extends Controller
     {
          //return view('welcome');
        $task = Task::find($id);
+
+          if ($task === null){
+              
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+            $data += $this->counts($user);
+            return view('users.show', $data);
+          }
+
+
           if (\Auth::user()->id === $task->user_id) {
 
             return view('tasks.edit', [
@@ -106,7 +121,15 @@ class TasksController extends Controller
             ]);
             
         }else {
-            return view('welcome');
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+            $data += $this->counts($user);
+            return view('users.show', $data);
         }
     }
 
